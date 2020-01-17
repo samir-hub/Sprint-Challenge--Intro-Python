@@ -23,49 +23,54 @@ humans = [
 
 # Write a list comprehension that creates a list of names of everyone
 # whose name starts with 'D':
+humans_str = [str(i) for i in humans]
 print("Starts with D:")
-a = []
+a = [l.name for l in humans if l.name[0] == "D"]
 print(a)
 
 # Write a list comprehension that creates a list of names of everyone
 # whose name ends in "e".
 print("Ends with e:")
-b = []
+b = [l.name for l in humans if l.name[-1] == "e"]
 print(b)
 
 # Write a list comprehension that creates a list of names of everyone
 # whose name starts with any letter between 'C' and 'G' inclusive.
+letters = ['C', 'D', 'E', 'F', 'G']
 print("Starts between C and G, inclusive:")
-c = []
+#c = [l for l in humans_str if l[8] in letters]
+c = [l.name for l in humans if l.name[0] in letters]
 print(c)
 
 # Write a list comprehension that creates a list of all the ages plus 10.
 print("Ages plus 10:")
-d = []
+d = list(map(lambda x: x.age + 10, humans))
 print(d)
 
 # Write a list comprehension that creates a list of strings which are the name
 # joined to the age with a hyphen, for example "David-31", for all humans.
 print("Name hyphen age:")
-e = []
+e = list(map(lambda x: f'{x.name}-{x.age}', humans))
 print(e)
 
 # Write a list comprehension that creates a list of tuples containing name and
 # age, for example ("David", 31), for everyone between the ages of 27 and 32,
 # inclusive.
 print("Names and ages between 27 and 32:")
-f = []
+#f = list(map(lambda x: tuple({x.name, x.age}), humans))
+f = [(l.name, l.age) for l in humans if l.age > 26 and l.age < 33 ]
 print(f)
 
 # Write a list comprehension that creates a list of new Humans like the old
 # list, except with all the names uppercase and the ages with 5 added to them.
 # The "humans" list should be unmodified.
 print("All names uppercase:")
-g = []
+#g = list(map(lambda x: f"<Human: {x.name.upper()}, {x.age + 5}>", humans))
+g = [Human(l.name.upper(), l.age+5) for l in humans]
 print(g)
 
 # Write a list comprehension that contains the square root of all the ages.
 print("Square root of ages:")
 import math
-h = []
+h = list(map(lambda x: math.sqrt(x.age), humans))
 print(h)
